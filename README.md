@@ -81,6 +81,7 @@ The server will run on port 3000 (or the port specified in your `.env` file).
 
 ### GraphQL API
 If enabled, visit `http://localhost:3000/graphql` to access the GraphQL Playground.
+At the meantime, it's not enabled and not yet configured - so this feature is not available.
 
 ## Assumptions and Limitations
 
