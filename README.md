@@ -1,101 +1,99 @@
-# ecri-backend
-ECRI Backend - NestJS, Prisma, GraphQL
-<p align="center">
-  <a href="http://nestjs.com/" target="blank"><img src="https://nestjs.com/img/logo-small.svg" width="120" alt="Nest Logo" /></a>
-</p>
+# ECRI - Task Management Backend
 
-[circleci-image]: https://img.shields.io/circleci/build/github/nestjs/nest/master?token=abc123def456
-[circleci-url]: https://circleci.com/gh/nestjs/nest
+A robust backend service built using NestJS, Prisma, and GraphQL (optional) for managing tasks and users. This service provides RESTful endpoints and optional GraphQL support for CRUD operations on tasks stored in a PostgreSQL database.
 
-  <p align="center">A progressive <a href="http://nodejs.org" target="_blank">Node.js</a> framework for building efficient and scalable server-side applications.</p>
-    <p align="center">
-<a href="https://www.npmjs.com/~nestjscore" target="_blank"><img src="https://img.shields.io/npm/v/@nestjs/core.svg" alt="NPM Version" /></a>
-<a href="https://www.npmjs.com/~nestjscore" target="_blank"><img src="https://img.shields.io/npm/l/@nestjs/core.svg" alt="Package License" /></a>
-<a href="https://www.npmjs.com/~nestjscore" target="_blank"><img src="https://img.shields.io/npm/dm/@nestjs/common.svg" alt="NPM Downloads" /></a>
-<a href="https://circleci.com/gh/nestjs/nest" target="_blank"><img src="https://img.shields.io/circleci/build/github/nestjs/nest/master" alt="CircleCI" /></a>
-<a href="https://coveralls.io/github/nestjs/nest?branch=master" target="_blank"><img src="https://coveralls.io/repos/github/nestjs/nest/badge.svg?branch=master#9" alt="Coverage" /></a>
-<a href="https://discord.gg/G7Qnnhy" target="_blank"><img src="https://img.shields.io/badge/discord-online-brightgreen.svg" alt="Discord"/></a>
-<a href="https://opencollective.com/nest#backer" target="_blank"><img src="https://opencollective.com/nest/backers/badge.svg" alt="Backers on Open Collective" /></a>
-<a href="https://opencollective.com/nest#sponsor" target="_blank"><img src="https://opencollective.com/nest/sponsors/badge.svg" alt="Sponsors on Open Collective" /></a>
-  <a href="https://paypal.me/kamilmysliwiec" target="_blank"><img src="https://img.shields.io/badge/Donate-PayPal-ff3f59.svg" alt="Donate us"/></a>
-    <a href="https://opencollective.com/nest#sponsor"  target="_blank"><img src="https://img.shields.io/badge/Support%20us-Open%20Collective-41B883.svg" alt="Support us"></a>
-  <a href="https://twitter.com/nestframework" target="_blank"><img src="https://img.shields.io/twitter/follow/nestframework.svg?style=social&label=Follow" alt="Follow us on Twitter"></a>
-</p>
-  <!--[![Backers on Open Collective](https://opencollective.com/nest/backers/badge.svg)](https://opencollective.com/nest#backer)
-  [![Sponsors on Open Collective](https://opencollective.com/nest/sponsors/badge.svg)](https://opencollective.com/nest#sponsor)-->
+## Features
 
-## Description
+- **REST API Endpoints**
+    - Retrieve all tasks (`GET /tasks`)
+    - Retrieve a single task by ID (`GET /tasks/:id`)
+    - Create a new task (`POST /tasks`)
+    - Update an existing task (`PUT /tasks/:id`)
+    - Delete a task (`DELETE /tasks/:id`)
+- **GraphQL API Support** (optional) - Explore your data via the GraphQL Playground at `/graphql`
+- **Database Integration** using Prisma with PostgreSQL
+- **Built-in Error Handling** and CORS support for development
 
-[Nest](https://github.com/nestjs/nest) framework TypeScript starter repository.
+## Technologies Used
 
-## Project setup
+- **NestJS**: Robust, modular, and testable framework for building scalable server-side applications
+- **Prisma**: Type-safe ORM for simplified database interactions and migrations with PostgreSQL
+- **GraphQL**: Optional query language allowing clients to request specific data
+- **PostgreSQL**: Powerful relational database for task storage
+- **TypeScript**: Enhanced type safety and code quality
 
+## Setup and Installation
+
+### Prerequisites
+
+- Node.js (v14 or higher recommended)
+- npm or yarn
+- PostgreSQL installed and running
+
+### Steps
+
+1. **Clone the Repository**
+   ```bash
+   git clone <repository-url>
+   cd task-management-backend
+   ```
+
+2. **Install Dependencies**
+   ```bash
+   npm install
+   # or
+   yarn install
+   ```
+
+3. **Configure Environment Variables**
+   Create a `.env` file in the project root:
+   ```env
+   DATABASE_URL="postgresql://nest_user:yourpassword@localhost:5432/task_management?schema=public"
+   PORT=3000
+   ```
+   Replace `nest_user`, `yourpassword`, and `task_management` with your PostgreSQL credentials.
+
+4. **Set Up the Database with Prisma**
+   ```bash
+   # Generate Prisma Client
+   npx prisma generate
+
+   # Run Database Migration
+   npx prisma migrate dev --name init
+   ```
+
+## Running the Backend
+
+Start the NestJS development server:
 ```bash
-$ npm install
+npm run start:dev
 ```
+The server will run on port 3000 (or the port specified in your `.env` file).
 
-## Compile and run the project
+## API Documentation
 
-```bash
-# development
-$ npm run start
+### REST API
+- `GET /tasks` - Retrieves all tasks
+- `GET /tasks/:id` - Retrieves a specific task by ID
+- `POST /tasks` - Creates a new task
+- `PUT /tasks/:id` - Updates an existing task
+- `DELETE /tasks/:id` - Deletes a task
 
-# watch mode
-$ npm run start:dev
+### GraphQL API
+If enabled, visit `http://localhost:3000/graphql` to access the GraphQL Playground.
 
-# production mode
-$ npm run start:prod
-```
+## Assumptions and Limitations
 
-## Run tests
-
-```bash
-# unit tests
-$ npm run test
-
-# e2e tests
-$ npm run test:e2e
-
-# test coverage
-$ npm run test:cov
-```
-
-## Deployment
-
-When you're ready to deploy your NestJS application to production, there are some key steps you can take to ensure it runs as efficiently as possible. Check out the [deployment documentation](https://docs.nestjs.com/deployment) for more information.
-
-If you are looking for a cloud-based platform to deploy your NestJS application, check out [Mau](https://mau.nestjs.com), our official platform for deploying NestJS applications on AWS. Mau makes deployment straightforward and fast, requiring just a few simple steps:
-
-```bash
-$ npm install -g mau
-$ mau deploy
-```
-
-With Mau, you can deploy your application in just a few clicks, allowing you to focus on building features rather than managing infrastructure.
-
-## Resources
-
-Check out a few resources that may come in handy when working with NestJS:
-
-- Visit the [NestJS Documentation](https://docs.nestjs.com) to learn more about the framework.
-- For questions and support, please visit our [Discord channel](https://discord.gg/G7Qnnhy).
-- To dive deeper and get more hands-on experience, check out our official video [courses](https://courses.nestjs.com/).
-- Deploy your application to AWS with the help of [NestJS Mau](https://mau.nestjs.com) in just a few clicks.
-- Visualize your application graph and interact with the NestJS application in real-time using [NestJS Devtools](https://devtools.nestjs.com).
-- Need help with your project (part-time to full-time)? Check out our official [enterprise support](https://enterprise.nestjs.com).
-- To stay in the loop and get updates, follow us on [X](https://x.com/nestframework) and [LinkedIn](https://linkedin.com/company/nestjs).
-- Looking for a job, or have a job to offer? Check out our official [Jobs board](https://jobs.nestjs.com).
-
-## Support
-
-Nest is an MIT-licensed open source project. It can grow thanks to the sponsors and support by the amazing backers. If you'd like to join them, please [read more here](https://docs.nestjs.com/support).
-
-## Stay in touch
-
-- Author - [Kamil Myśliwiec](https://twitter.com/kammysliwiec)
-- Website - [https://nestjs.com](https://nestjs.com/)
-- Twitter - [@nestframework](https://twitter.com/nestframework)
+- This project demonstrates basic task management functionality
+- Development configuration only; production setups require:
+    - Enhanced security measures
+    - Comprehensive error logging
+    - Performance optimizations
+- Basic error handling included
+- CORS enabled globally for development
+- GraphQL API is optional and can be disabled if not needed
 
 ## License
 
-Nest is [MIT licensed](https://github.com/nestjs/nest/blob/master/LICENSE).
+- This project is licensed under the MIT License.
+- Developed by Oliver Sim.
